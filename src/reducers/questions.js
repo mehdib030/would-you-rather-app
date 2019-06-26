@@ -1,4 +1,4 @@
-import {RECEIVE_QUESTIONS,TOGGLE_ANSWER} from '../actions/questions'
+import {RECEIVE_QUESTIONS,TOGGLE_ANSWER, ADD_QUESTION} from '../actions/questions'
 
 
 export default function questions (state = {},action){
@@ -18,6 +18,14 @@ export default function questions (state = {},action){
                     :state[action.id].answers.concat([action.authedUser])
                 }
             }
+        case ADD_QUESTION:
+            const {question} = action
+
+            return {
+                ...state,
+                [action.question.id]: action.question,
+            }
+            
         default:
             return state
     }

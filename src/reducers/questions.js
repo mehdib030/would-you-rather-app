@@ -1,4 +1,4 @@
-import {RECEIVE_QUESTIONS,TOGGLE_ANSWER, ADD_QUESTION} from '../actions/questions'
+import {RECEIVE_QUESTIONS,TOGGLE_QUESTION, ADD_QUESTION} from '../actions/questions'
 
 
 export default function questions (state = {},action){
@@ -8,7 +8,7 @@ export default function questions (state = {},action){
                 ...state,
                 ...action.questions
             }
-        case TOGGLE_ANSWER:
+        case TOGGLE_QUESTION:
             return {
                 ...state,
                 [action.id]: {

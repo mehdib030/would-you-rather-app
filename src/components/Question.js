@@ -1,7 +1,8 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline'
-import {handleToggleAnswer} from '../actions/questions'
+import {formatQuestion,formatDate} from '../utils/helpers'
+import {handleToggleAnswer} from '../actions/questions' 
+import {Link,withRouter} from 'react-router-dom'
 
 class Question extends Component {
 
@@ -10,7 +11,7 @@ class Question extends Component {
 
         const {dispatch,question,authedUser} = this.props
 
-        dispatch(andleToggleAnswer({
+        dispatch(handleToggleAnswer({
             id:question.id,
             hasAnswered: question.hasAnswered,
             authedUser
@@ -29,16 +30,19 @@ class Question extends Component {
         }
 
         const {
-            author,timestamp,optionOne,optionTwo
+            name,author,timestamp,optionOne,optionTwo
         } = question
 
         return (
 
             <div className='question'>
-                <img src={avatar}
+
+            {/* <img src={avatar}
                         alt={`Avatar of ${name}`}
                         className='avatar'
-                />
+                />  */}
+
+                <div>AVATAR</div>
             
                 <div className='question-info'>
                 
@@ -66,7 +70,7 @@ function mapStateToProps({authedUser,users,questions},{id}){
     return {
         authedUser,
         question:question
-            ? formatQuestion(question,users[question.author],authedUser,parentQuestion):null
+            ? formatQuestion(question,users[question.author],authedUser):null
     }
 }
 

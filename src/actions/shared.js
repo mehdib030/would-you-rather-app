@@ -9,7 +9,7 @@ export function handleInitialData(){
     return (dispatch) => {
         return getInitialData().then(({users,questions}) => {
             dispatch(receiveUsers(users))
-            dispatch(receiveQuestions)
+            dispatch(receiveQuestions(questions))
             dispatch(setAuthedUser(AUTHED_ID))
         })
     }

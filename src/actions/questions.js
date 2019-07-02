@@ -20,13 +20,29 @@ export function handleAddQuestion(text){
         return saveQuestion({
 
             text,
-            author:authedUser
+            author:authedUser,
 
-        })
-        .then((question) => dispatch(addQuestion(question)))
+        })//.then((question) => dispatch(addQuestion(question)))
+       // .then()
         //.then(() => dispatch(hideLoading()))
     }
 }
+
+/* export function handleAddTweet (text, replyingTo) {
+    return (dispatch, getState) => {
+      const { authedUser } = getState()
+  
+      dispatch(showLoading())
+  
+      return saveTweet({
+        text,
+        author: authedUser,
+        replyingTo
+      })
+        .then((tweet) => dispatch(addTweet(tweet)))
+        .then(() => dispatch(hideLoading()))
+    }
+  } */
 export function receiveQuestions(questions){
     return {
         type: RECEIVE_QUESTIONS,

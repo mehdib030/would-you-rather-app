@@ -16,10 +16,11 @@ export function getInitialData(){
 }
 
 export function saveAnswerToggle(info){
-    return _saveQuestionAnswer
+    return _saveQuestionAnswer(info)
 }
 
-export function saveQuestion(info){
-    return _saveQuestion
+export function saveQuestion(question){
+    console.log('*** SAVING QUESTION')
+    return _saveQuestion(question)
 }
 

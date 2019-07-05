@@ -12,7 +12,7 @@ class NewQuestion extends Component {
 
     handleOptionOneChange = (e) => {
         const optionOneText = e.target.value
-
+        console.log('********* OP1 : ',optionOneText)
         this.setState(() => ({
             optionOneText
         }))
@@ -29,17 +29,18 @@ class NewQuestion extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const {optionOneText} = this.state.optionOneText
-        const {optionTwoText} = this.state.optionTwoText
+        var optionOneText = this.state.optionOneText
+        var optionTwoText = this.state.optionTwoText
         const {dispatch,id} = this.props
         // Add question to store
         
+        console.log('** op1 from state : ', this.state.optionOneText)
 
         console.log('New question: option one : ',optionOneText,
         ' and option two',optionTwoText)
 
-        dispatch(handleAddQuestion(optionOneText))
-        dispatch(handleAddQuestion(optionTwoText))
+        dispatch(handleAddQuestion(optionOneText,optionTwoText))
+        //dispatch(handleAddQuestion(optionTwoText))
 
         this.setState(() => ({
             optionOneText:'',

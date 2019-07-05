@@ -11,18 +11,24 @@ function addQuestion(question){
     }
 }
 
-export function handleAddQuestion(text){
+export function handleAddQuestion(optionOne,optionTwo){
+    console.log('1-HANDLE QUESTION')
     return (dispatch,getState) => {
         const {authedUser} = getState()
 
         //dispatch(showLoading())
 
+        console.log('*** AUTHED USER : ',authedUser)
+
+        console.log('*** OPTION ONE : ',optionOne)
+
+        console.log('*** OPTION TWO : ',optionTwo)
+
         return saveQuestion({
-
-            text,
+            optionOneText:optionOne,
+            optionTwoText: optionTwo,
             author:authedUser,
-
-        })//.then((question) => dispatch(addQuestion(question)))
+        }).then((question) => dispatch(addQuestion(question)))
        // .then()
         //.then(() => dispatch(hideLoading()))
     }
@@ -59,14 +65,14 @@ function toggleAnswer({id,authedUser,hasAnswered}){
     }
 }
 
-export function handleToggleAnswer(info){
+export function handleToggleAnswer(question){
     return (dispatch) => {
-        dispatch(toggleAnswer(info))
+        dispatch(toggleAnswer(question))
 
-        return saveAnswerToggle(info)
+        return saveAnswerToggle(question)
                 .catch((e)=>{
                     console.warn('Error in handleToggleAnswer: ', e)
-                    dispatch(toggleAnswer(info))
+                    dispatch(toggleAnswer(question))
                     alert('There was an error selecting an answer.Try again.')
                 })
     }

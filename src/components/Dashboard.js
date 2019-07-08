@@ -15,15 +15,29 @@ class Dashboard extends Component {
                         </li>
                     ))}
                 </ul>
+
+                <h3 className='center'>Users</h3>
+
+                <ul className='dash-list'>
+                        {this.props.users.map((user) => (
+                            <li key={user.id}>
+                                <div>{user.id}</div>
+                                <div>{user.name}</div>
+                                <div>{user.questions}</div>
+                                
+                            </li>
+                        ))}
+                </ul>
             </div>
         )
     }
 }
 
-function mapStateToProps({questions}){
+function mapStateToProps({questions,users}){
     return {
-        questionIds: Object.keys(questions)
-            .sort((a,b)=>questions[b].timestamp - questions[a].timestamp)
+        questionIds: Object.keys(questions),
+        users:Object.values(users)
+           // .sort((a,b)=>questions[b].timestamp - questions[a].timestamp)
     }
 }
 

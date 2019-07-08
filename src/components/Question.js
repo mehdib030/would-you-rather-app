@@ -29,9 +29,9 @@ class Question extends Component {
             return <p>This Question does not exist</p>
         }
 
-        const {
+       /*  const {
             name,author,timestamp,optionOne,optionTwo
-        } = question
+        } = question */
 
         return (
 
@@ -43,11 +43,17 @@ class Question extends Component {
                 />  */}
 
                 <div>AVATAR</div>
-            
+                <div>{question.id}</div>
+                <div>{question.timestamp}</div>
+                <div>{question.name}</div>
+               
+                <div>{question.optionOne? question.optionOne.text:null}</div>
+                <div>{question.optionTwo? question.optionTwo.text:null}</div>
+                <div>{question.author}</div>
                 <div className='question-info'>
                 
                     <div>
-                            <span>{name}</span>
+                            {/* <span>{name}</span> */}
 
                             <button className='' onClick={this.handleLike}>
                                 Submit
@@ -65,12 +71,19 @@ class Question extends Component {
 
 function mapStateToProps({authedUser,users,questions},{id}){
     const question = questions[id] 
+    console.log('@@@@@@@@@@@@ OBJECT : ',question.optionOne.text)
     const parentQuestion = question ? questions[question.author]:null
+    let questionPreformatted = {
+        optionOneText:question.optionOne.text,
+        optionTwoText:question.optionTwo.text,
+        author:question.author
+    }
 
     return {
         authedUser,
-        question:question
-            ? formatQuestion(question,users[question.author],authedUser):null
+        question:questionPreformatted
+        ?formatQuestion(questionPreformatted):null
+           
     }
 }
 

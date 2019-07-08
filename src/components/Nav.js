@@ -15,6 +15,16 @@ export default function Nav(){
                         New Question
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to='/leader' activeClassName='active'>
+                        Leader Board
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/logout' activeClassName='active'>
+                        Logout
+                    </NavLink>
+                </li>
             </ul>
         </nav>
 

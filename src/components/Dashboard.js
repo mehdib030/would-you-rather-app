@@ -9,7 +9,7 @@ class Dashboard extends Component {
                 <h3 className='center'>Questions</h3>
 
                 <ul className='dash-list'>
-                    {this.props.questionIds.map((id) =>(
+                    {this.props.questionIds.map((id) => (
                         <li key={id}>
                             <Question id={id}/>
                         </li>
@@ -34,8 +34,22 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({questions,users}){
+    let unansweredQuestions =[]
+    let answeredQuestions =[]
+
+    let quests = Object.keys(questions)
+
+    quests.keys((question) => {
+         if(question.optionOne.votes || question.optionTwo.votes){
+            answeredQuestions.push(question)
+         } else {
+            unansweredQuestions.push(question)
+         }
+    })
     return {
-        questionIds: Object.keys(questions),
+        answeredQuestions: Object.keys(questions), //TODO:
+
+        
         users:Object.values(users)
            // .sort((a,b)=>questions[b].timestamp - questions[a].timestamp)
     }

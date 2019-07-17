@@ -9,13 +9,23 @@ class Dashboard extends Component {
                 <h3 className='center'>Questions</h3>
 
                 <ul className='dash-list'>
-                    {this.props.questionIds.map((id) => (
+                    {this.props.answeredQuestions1.map((id) => (
                         <li key={id}>
                             <Question id={id}/>
                         </li>
                     ))}
                 </ul>
 
+                <h3 className='center'>Unanswered Questions</h3>
+                <ul className='dash-list-1'>
+                    {this.props.unansweredQuestions1.map((id) => (
+                        <li key={id}>
+                            <Question id={id}/>
+                        </li>
+                    ))}
+                </ul>
+
+                
                 <h3 className='center'>Users</h3>
 
                 <ul className='dash-list'>
@@ -37,19 +47,21 @@ function mapStateToProps({questions,users}){
     let unansweredQuestions =[]
     let answeredQuestions =[]
 
-    let quests = Object.keys(questions)
+    let quests = Object.values(questions)
 
-    quests.keys((question) => {
-         if(question.optionOne.votes || question.optionTwo.votes){
-            answeredQuestions.push(question)
+    quests.map((question) => {
+         if(question.optionOne.votes.length > 0 || question.optionTwo.votes.length > 0){
+            answeredQuestions.push(question.id)
          } else {
-            unansweredQuestions.push(question)
+            unansweredQuestions.push(question.id)
          }
-    })
+         
+    }
+    )
     return {
-        answeredQuestions: Object.keys(questions), //TODO:
-
-        
+        answeredQuestions1:  answeredQuestions, 
+        unansweredQuestions1: unansweredQuestions, 
+    
         users:Object.values(users)
            // .sort((a,b)=>questions[b].timestamp - questions[a].timestamp)
     }

@@ -1,4 +1,5 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS'
+export const ADD_QUESTION_ID_TO_USER = 'ADD_QUESTION_ID_TO_USER'
 
 export function receiveUsers(users){
     return {
@@ -6,3 +7,11 @@ export function receiveUsers(users){
         users,
     }
 }
+
+ export function addQuestionToUser(questionId){
+    return {
+        type:ADD_QUESTION_ID_TO_USER,
+        questionId
+    }
+} 
+

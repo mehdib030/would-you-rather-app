@@ -19,9 +19,9 @@ class App extends Component {
                     <div className='container'>
                         <Nav />
                         <div>
-                            <Route path='/' exact component={Dashboard} />
+                            <Route path='/w' exact component={Dashboard} />
                             <Route path='/question/:id' component={QuestionPage} />
-                            <Route path='/new' component={NewQuestion} />
+                            <Route path='/new1' component={NewQuestion} />
                         </div>
                     </div>
                 </Fragment>

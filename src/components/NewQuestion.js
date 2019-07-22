@@ -12,7 +12,6 @@ class NewQuestion extends Component {
 
     handleOptionOneChange = (e) => {
         const optionOneText = e.target.value
-        console.log('********* OP1 : ',optionOneText)
         this.setState(() => ({
             optionOneText
         }))
@@ -81,7 +80,7 @@ class NewQuestion extends Component {
                         className='btn'
                         type='submit'
                         disabled = {optionOneText==='' || optionTwoText === ''}
-                    >Submit</button>
+                    >Save</button>
                 
                 
                 </form>

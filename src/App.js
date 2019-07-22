@@ -5,9 +5,17 @@ import {handleInitialData} from './actions/shared'
 import Dashboard from './components/Dashboard'
 import NewQuestion from './components/NewQuestion'
 import QuestionPage from './components/QuestionPage'
+import LeaderBoard from './components/LeaderBoard'
+import Results from './components/Results'
 import Nav from './components/Nav'
+import Login from './components/Login'
 
 class App extends Component {
+
+    state = {
+        visibleNav:false,
+    }
+
     componentDidMount(){
         this.props.dispatch(handleInitialData())
     }
@@ -19,9 +27,12 @@ class App extends Component {
                     <div className='container'>
                         <Nav />
                         <div>
-                            <Route path='/' exact component={Dashboard} />
+                            <Route path='/home' exact component={Dashboard} />
                             <Route path='/question/:id' component={QuestionPage} />
                             <Route path='/new' component={NewQuestion} />
+                            <Route path='/leader' component={LeaderBoard} />
+                            <Route path='/results/:id' component={Results} />
+                            <Route path='/' exact component={Login} />
                         </div>
                     </div>
                 </Fragment>

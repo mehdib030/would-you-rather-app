@@ -1,8 +1,9 @@
-import {saveAnswerToggle,saveQuestion} from '../utils/api'
+import {saveAnswer,saveQuestion} from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const TOGGLE_QUESTION = 'TOGGLE_QUESTION'
+export const SAVE_ANSWER = 'SAVE_ANSWER'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_QUESTION_ID_TO_USER = 'ADD_QUESTION_ID_TO_USER'
 
 function addQuestion(question){
     return {
@@ -11,44 +12,30 @@ function addQuestion(question){
     }
 }
 
+function addQuestionIdToUser(questionId,authedUser){
+    return {
+        type:ADD_QUESTION_ID_TO_USER,
+        id: questionId,
+        author:authedUser
+    }
+}
+
 export function handleAddQuestion(optionOne,optionTwo){
-    console.log('1-HANDLE QUESTION')
     return (dispatch,getState) => {
         const {authedUser} = getState()
 
         //dispatch(showLoading())
-
-        console.log('*** AUTHED USER : ',authedUser)
-
-        console.log('*** OPTION ONE : ',optionOne)
-
-        console.log('*** OPTION TWO : ',optionTwo)
-
         return saveQuestion({
             optionOneText:optionOne,
             optionTwoText: optionTwo,
             author:authedUser,
-        }).then((question) => dispatch(addQuestion(question)))
-       // .then()
+        }).then((question) => {
+            dispatch(addQuestion(question))
+            dispatch(addQuestionIdToUser(question.id,authedUser))
+        })
         //.then(() => dispatch(hideLoading()))
     }
 }
-
-/* export function handleAddTweet (text, replyingTo) {
-    return (dispatch, getState) => {
-      const { authedUser } = getState()
-  
-      dispatch(showLoading())
-  
-      return saveTweet({
-        text,
-        author: authedUser,
-        replyingTo
-      })
-        .then((tweet) => dispatch(addTweet(tweet)))
-        .then(() => dispatch(hideLoading()))
-    }
-  } */
 export function receiveQuestions(questions){
     return {
         type: RECEIVE_QUESTIONS,
@@ -56,24 +43,33 @@ export function receiveQuestions(questions){
     }
 }
 
-function toggleAnswer({id,authedUser,hasAnswered}){
+function saveAnswerAction({id,authUser,hasAnswered,answer}){
     return {
-        type:TOGGLE_QUESTION,
+        type:SAVE_ANSWER,
         id,
-        authedUser,
-        hasAnswered
+        authUser,
+        hasAnswered,
+        answer
     }
 }
 
-export function handleToggleAnswer(question){
-    return (dispatch) => {
-        dispatch(toggleAnswer(question))
+export function handleSaveAnswer({id,hasAnswered,authedUser,answer}){
+    return (dispatch,getState) => {
+        const {authedUser} = getState()
 
-        return saveAnswerToggle(question)
-                .catch((e)=>{
-                    console.warn('Error in handleToggleAnswer: ', e)
-                    dispatch(toggleAnswer(question))
+        const authUser = authedUser.authedUser
+        return saveAnswer({ 
+            authedUser:authUser, 
+            qid:id, 
+            answer:answer
+        }).then(() => {
+            hasAnswered = false
+            dispatch(saveAnswerAction({id,authUser,hasAnswered,answer}))
+        })
+               /*  .catch((e)=>{
+                    console.warn('Error in saveAnswer: ', e)
+                    dispatch(saveAnswer(question.id,))
                     alert('There was an error selecting an answer.Try again.')
-                })
+                }) */
     }
 }

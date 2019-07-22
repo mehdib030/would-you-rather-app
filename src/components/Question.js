@@ -1,12 +1,12 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import {formatQuestion,formatDate} from '../utils/helpers'
-import {handleToggleAnswer} from '../actions/questions' 
+//import {handleToggleAnswer} from '../actions/questions' 
 import {Link,withRouter} from 'react-router-dom'
 
 class Question extends Component {
 
-    handleSelectOption = (e) => {
+   /*  handleSelectOption = (e) => {
         e.preventDefault()
 
         const {dispatch,question,authedUser} = this.props
@@ -17,7 +17,7 @@ class Question extends Component {
             authedUser
         }))
     }
-
+ */
     toParent = (e,id) => {
         e.preventDefault()
     }
@@ -54,9 +54,9 @@ class Question extends Component {
                 
                     <div>
                             {/* <span>{name}</span> */}
-
-                            <button className='' onClick={this.handleLike}>
-                                Submit
+                            
+                            <button type='button' className='' onClick={this.handleViewPoll(question.id)} >
+                                View Poll
                             </button>
 
                     </div>
@@ -67,13 +67,33 @@ class Question extends Component {
 
         )
     }
+
+    handleViewPoll = (id) => (e) => {
+        e.preventDefault()
+    
+        console.log('VIEWING THE POLL ID = ',id)
+
+        this.props.history.push("/question/"+id)
+    
+        // console.log('New question: option one : ',optionOneText,
+        // ' and option two',optionTwoText)
+    
+       // dispatch(handleAddQuestion(optionOneText,optionTwoText))
+        //dispatch(handleAddQuestion(optionTwoText))
+    
+       /*  this.setState(() => ({
+            optionOneText:'',
+            optionTwoText:''
+        })) */
+    
+    }
 }
 
 function mapStateToProps({authedUser,users,questions},{id}){
     const question = questions[id] 
-    console.log('@@@@@@@@@@@@ OBJECT : ',question.optionOne.text)
     const parentQuestion = question ? questions[question.author]:null
     let questionPreformatted = {
+        id:question.id,
         optionOneText:question.optionOne.text,
         optionTwoText:question.optionTwo.text,
         author:question.author
@@ -81,10 +101,12 @@ function mapStateToProps({authedUser,users,questions},{id}){
 
     return {
         authedUser,
-        question:questionPreformatted
-        ?formatQuestion(questionPreformatted):null
+        question:question
+        
+        //questionPreformatted
+        //?formatQuestion(questionPreformatted):null
            
     }
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

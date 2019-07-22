@@ -15,8 +15,8 @@ export function getInitialData(){
     }))
 }
 
-export function saveAnswerToggle(info){
-    return _saveQuestionAnswer(info)
+export function saveAnswer({authedUser,qid,answer}){
+    return _saveQuestionAnswer({authedUser,qid,answer})
 }
 
 export function saveQuestion(question){

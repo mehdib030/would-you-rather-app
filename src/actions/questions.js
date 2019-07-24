@@ -28,10 +28,10 @@ export function handleAddQuestion(optionOne,optionTwo){
         return saveQuestion({
             optionOneText:optionOne,
             optionTwoText: optionTwo,
-            author:authedUser,
+            author:authedUser.authedUser,
         }).then((question) => {
             dispatch(addQuestion(question))
-            dispatch(addQuestionIdToUser(question.id,authedUser))
+            dispatch(addQuestionIdToUser(question.id,authedUser.authedUser))
         })
         //.then(() => dispatch(hideLoading()))
     }
@@ -66,10 +66,11 @@ export function handleSaveAnswer({id,hasAnswered,authedUser,answer}){
             hasAnswered = false
             dispatch(saveAnswerAction({id,authUser,hasAnswered,answer}))
         })
-               /*  .catch((e)=>{
-                    console.warn('Error in saveAnswer: ', e)
-                    dispatch(saveAnswer(question.id,))
-                    alert('There was an error selecting an answer.Try again.')
-                }) */
+        /*  .catch((e)=>{
+            console.warn('Error in saveAnswer: ', e)
+            dispatch(saveAnswer(question.id,))
+            alert('There was an error selecting an answer.Try again.')
+            }) 
+        */
     }
 }

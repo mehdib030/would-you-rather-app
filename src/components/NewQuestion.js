@@ -25,7 +25,7 @@ class NewQuestion extends Component {
         }))
     }
 
-    handleSubmit = (e) => {
+     handleSubmit = (e) => {
         e.preventDefault()
 
         var optionOneText = this.state.optionOneText

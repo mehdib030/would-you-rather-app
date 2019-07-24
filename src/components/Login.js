@@ -4,38 +4,54 @@ import SelectUser from './SelectUser'
 import Button from '@material-ui/core/Button';
 import {handleSetAuthedUser} from '../actions/authedUser'
 import {Link,withRouter} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class Login extends Component {
 
     state = {
         userSelected:'',
+        users:{}
     }
+
+    static propTypes = {
+        updateShowLogin:PropTypes.func.isRequired
+    } 
 
 
     render(){
+
+        const {updateShowLogin} = this.props
 
        return (
             <div>
                 <h3>Sign in</h3>
 
-                <SelectUser selectUser={this.selectUser}/>
+                <SelectUser selectUser={this.selectUser} users={this.props.users}/>
 
                 <Button variant="contained" color="primary" 
-                        onClick={this.handleClick(this.state.userSelected)}>
+                        onClick={
+                            () => {
+                                updateShowLogin(false,this.state.userSelected)
+                                this.handleClick()
+                            }
+                        }>
                     Sign in
                 </Button>
             </div>
        )
     }
 
-    handleClick = (user) => (e) =>{
+    handleClick = (e) =>{
 
-        e.preventDefault()
-        const {dispatch} = this.props
+       // e.preventDefault()
+        
+       // const {dispatch} = this.props
 
-        console.log('SAVING SELECTED USER = ',user)
+       // console.log('SAVING SELECTED USER = ',user)
 
-        dispatch(handleSetAuthedUser(user)) 
+       // dispatch(handleSetAuthedUser(user)) 
+
+      
            
         this.props.history.push("/home")
         
@@ -48,12 +64,17 @@ class Login extends Component {
             userSelected:userSelected,
         })
       }
+
+      getUsers = () =>{
+            
+      }
 }
 
-function mapStateToProps(questions,users,authedUser){
+/* function mapStateToProps(questions,users,authedUser){
 
     return {
-
+            users:Object.values(users)
     }
-}
-export default withRouter(connect(mapStateToProps)(Login))
+} */
+//export default connect(mapStateToProps)(Login)
+export default withRouter((Login))

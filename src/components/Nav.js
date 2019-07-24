@@ -1,15 +1,15 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-export default function Nav(){
+export default function Nav(props){
+
+    let authedUserName = props.authedUserName
+
+    let updateShowLogin =props.updateShowLogin
+
     return (
         <nav className='nav'>
             <ul>
-                <li>
-                    <NavLink to='/' exact activeClassName='active'>
-                        Home
-                    </NavLink>
-                </li>
                 <li>
                     <NavLink to='/home' exact activeClassName='active'>
                         Home
@@ -26,7 +26,10 @@ export default function Nav(){
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/logout' activeClassName='active'>
+                    <div>Hello, {authedUserName}</div>
+                </li>    
+                <li>
+                    <NavLink to='/' activeClassName='active' onClick={() => updateShowLogin(true,'')}>
                         Logout
                     </NavLink>
                 </li>

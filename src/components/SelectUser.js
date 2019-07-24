@@ -23,6 +23,7 @@ export default function ControlledOpenSelect(props) {
   const [open, setOpen] = React.useState(false);
 
   let selectUser = props.selectUser
+  let users = props.users
 
   function handleChange(event) {
     setUser(event.target.value);
@@ -39,11 +40,15 @@ export default function ControlledOpenSelect(props) {
 
   return (
     <form autoComplete="off">
-      <Button className={classes.button} onClick={handleOpen}>
-        Open the select
-      </Button>
+      
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="demo-controlled-open-select">User</InputLabel>
+
+        {/* <SelectField selectedIndex={this.state.deviceIndex}>
+            {this.state.devices.map(device =>
+            <MenuItem value={device.id} primaryText={device.name}/>
+            )}
+        </SelectField> */}
         <Select
           open={open}
           onClose={handleClose}
@@ -54,13 +59,15 @@ export default function ControlledOpenSelect(props) {
             name: 'user',
             id: 'demo-controlled-open-select',
           }}
+          
         >
+
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
           <MenuItem value='sarahedo'>sarahedo</MenuItem>
           <MenuItem value='tylermcginnis'>tylermcginnis</MenuItem>
-          <MenuItem value='johndoe'>johndoe</MenuItem>
+          <MenuItem value='johndoe'>johndoe</MenuItem> 
         </Select>
       </FormControl>
     </form>

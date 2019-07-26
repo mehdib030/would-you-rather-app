@@ -1,4 +1,5 @@
 import {saveAnswer,saveQuestion} from '../utils/api'
+import {saveUserAnswerAction} from './users'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_ANSWER = 'SAVE_ANSWER'
@@ -43,7 +44,7 @@ export function receiveQuestions(questions){
     }
 }
 
-function saveAnswerAction({id,authUser,hasAnswered,answer}){
+export function saveAnswerAction({id,authUser,hasAnswered,answer}){
     return {
         type:SAVE_ANSWER,
         id,
@@ -65,6 +66,7 @@ export function handleSaveAnswer({id,hasAnswered,authedUser,answer}){
         }).then(() => {
             hasAnswered = false
             dispatch(saveAnswerAction({id,authUser,hasAnswered,answer}))
+            dispatch(saveUserAnswerAction({id,authUser,hasAnswered,answer}))
         })
         /*  .catch((e)=>{
             console.warn('Error in saveAnswer: ', e)

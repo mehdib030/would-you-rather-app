@@ -23,13 +23,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function RadioButtonsGroup(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('optionOne');
+  
 
   let question = props.question
 
   let selectOption = props.selectOption
 
-  console.log('**** QUESTION ID = ',question) 
+  let savedOption = props.savedOption
+
+  const [value, setValue] = React.useState(savedOption?savedOption:'optionOne');
 
   function handleChange(event) {
     setValue(event.target.value);

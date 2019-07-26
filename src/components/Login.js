@@ -43,17 +43,12 @@ class Login extends Component {
 
     handleClick = (e) =>{
 
-       // e.preventDefault()
+        if(this.state.userSelected === ""){
+            this.props.history.push("/")
+        } else {
+            this.props.history.push("/home")
+        }
         
-       // const {dispatch} = this.props
-
-       // console.log('SAVING SELECTED USER = ',user)
-
-       // dispatch(handleSetAuthedUser(user)) 
-
-      
-           
-        this.props.history.push("/home")
         
       }
 
@@ -70,11 +65,11 @@ class Login extends Component {
       }
 }
 
-/* function mapStateToProps(questions,users,authedUser){
+function mapStateToProps(questions,users,authedUser){
 
     return {
             users:Object.values(users)
     }
-} */
+} 
 //export default connect(mapStateToProps)(Login)
 export default withRouter((Login))

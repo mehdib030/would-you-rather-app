@@ -36,7 +36,6 @@ function mapStateToProps({questions,users}){
             var aSize = a.questions.length + Object.keys(a.answers).length
             var bSize = b.questions.length + Object.keys(b.answers).length
 
-            console.log(' aSize = ',aSize,' bSize = ',bSize)
         
            return (aSize > bSize) ? -1 : 1;
         })}

@@ -6,7 +6,7 @@ class Results extends Component {
 
     render(){
 
-        const {authedUser,question,total,optionOnePercentVote,optionTwoPercentVote} = this.props
+        const {authedUser,question,total,optionOnePercentVote,optionTwoPercentVote,optionOneTotal,optionTwoTotal} = this.props
 
        return (
             <div>
@@ -15,10 +15,12 @@ class Results extends Component {
 
                 <div>{question.optionOne.text}</div>
                 <div>{optionOnePercentVote}%</div>
+                <div>{optionOneTotal}</div>
                 <div>{question.optionOne.votes.length} out of {total} votes</div>
 
                 <div>{question.optionTwo.text}</div>
                 <div>{optionTwoPercentVote}%</div>
+                <div>{optionTwoTotal}</div>
                 <div>{question.optionTwo.votes.length} out of {total} votes</div>
             
             </div>
@@ -37,12 +39,18 @@ function mapStateToProps({authedUser,questions,users},props){
 
     const optionTwoPercentVote = (question.optionTwo.votes.length / total)*100;
 
+    const optionOneTotal = question.optionOne.votes.length
+    const optionTwoTotal = question.optionTwo.votes.length
+
+
     return {
       total:total,
       optionOnePercentVote:optionOnePercentVote,
       optionTwoPercentVote:optionTwoPercentVote,
       authedUser:authedUser,
-      question:questions[id]
+      question:questions[id],
+      optionOneTotal:optionOneTotal,
+      optionTwoTotal:optionTwoTotal
     }
 }
 export default connect(mapStateToProps)(Results) 

@@ -71,20 +71,8 @@ class Question extends Component {
     handleViewPoll = (id) => (e) => {
         e.preventDefault()
     
-        console.log('VIEWING THE POLL ID = ',id)
-
-        this.props.history.push("/question/"+id)
-    
-        // console.log('New question: option one : ',optionOneText,
-        // ' and option two',optionTwoText)
-    
-       // dispatch(handleAddQuestion(optionOneText,optionTwoText))
-        //dispatch(handleAddQuestion(optionTwoText))
-    
-       /*  this.setState(() => ({
-            optionOneText:'',
-            optionTwoText:''
-        })) */
+        
+       this.props.history.push("/question/"+id)
     
     }
 }

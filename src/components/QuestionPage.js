@@ -13,14 +13,14 @@ class QuestionPage extends Component{
 
   render(){
 
-    const {authedUser,question} = this.props
+    const {authedUser,question,savedOption} = this.props
 
     return(
         <div>
           <h3>{authedUser.authedUser} asks :</h3>
           <h2>Would you rather</h2>
 
-         <RadioButtons question={question} selectOption={this.selectOption}/>
+         <RadioButtons question={question} selectOption={this.selectOption} savedOption={savedOption}/>
            
             <Button variant="contained" color="primary" 
             onClick={this.handleClick(question.id)}>
@@ -59,10 +59,17 @@ class QuestionPage extends Component{
 
 function mapStateToProps ({ authedUser, questions, users }, props) {
      var id  = props.match.params.id
+     
+     let uid = authedUser.authedUser
+
+     let user = users[uid]
+
+     let savedOption = user.answers[id]
   
     return {
       authedUser:authedUser,
-      question:questions[id]
+      question:questions[id],
+      savedOption:savedOption
     }
   }
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 //import { constants } from 'zlib';
 import {connect} from 'react-redux'
 import {handleAddQuestion} from '../actions/questions'
+import Button from '@material-ui/core/Button';
 
 class NewQuestion extends Component {
 
@@ -32,19 +33,15 @@ class NewQuestion extends Component {
         var optionTwoText = this.state.optionTwoText
         const {dispatch,id} = this.props
         // Add question to store
-        
-        console.log('** op1 from state : ', this.state.optionOneText)
-
-        console.log('New question: option one : ',optionOneText,
-        ' and option two',optionTwoText)
 
         dispatch(handleAddQuestion(optionOneText,optionTwoText))
-        //dispatch(handleAddQuestion(optionTwoText))
 
         this.setState(() => ({
             optionOneText:'',
             optionTwoText:''
         }))
+
+        this.props.history.push("/home")
 
     }
 
@@ -76,11 +73,12 @@ class NewQuestion extends Component {
 
                     </div>
                 
-                    <button
-                        className='btn'
-                        type='submit'
-                        disabled = {optionOneText==='' || optionTwoText === ''}
-                    >Save</button>
+                    
+
+                    <Button variant="contained" color="primary" type='submit' 
+                    disabled = {optionOneText==='' || optionTwoText === ''}>
+                                Save
+                                </Button>
                 
                 
                 </form>

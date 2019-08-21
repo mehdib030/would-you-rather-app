@@ -1,5 +1,4 @@
 import React, {Component,Fragment} from 'react'
-//import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {BrowserRouter,Route,Redirect,Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {handleInitialData} from './actions/shared'
@@ -27,27 +26,32 @@ class App extends Component {
         return(
             <BrowserRouter>
                  <div className="app" >
-                    {this.state.showLogin ? (
 
-                            <Route exact path='/' render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)}/>
-                        
-                    ):(
-                        <div className='container'>
-                                <Nav authedUserName={this.props.authedUserName} updateShowLogin={this.updateShowLogin}/>
-                               
-                                <div>
-                                <Switch>
-                                    <Route path='/home' component={Dashboard} />
-                                    <Route path='/question/:id' component={QuestionPage} />
-                                    <Route path='/add' component={NewQuestion} />
-                                    <Route path='/leader' component={LeaderBoard} />
-                                    <Route path='/results/:id' component={Results} />
-                                    <Route path='/' />
-                                    <Route path='*' exact={true} component={Page404}/>
-                                </Switch> 
-                                </div>
+                      {this.props.authedUserName===""?( //TODO: use redux-persist
+                          <Switch>
+                                 <Route exact path='/' render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)}/>
+                                <Route path='/home'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)}/>
+                                <Route path='/question/:id'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
+                                <Route path='/add'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
+                                <Route path='/leaderboard'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
+                                <Route path='/results/:id'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
+                                <Route component={Page404} />
+                          </Switch>
+                           
+                         ):( 
+                            <div className='container'>
+                            <Nav authedUserName={this.props.authedUserName} updateShowLogin={this.updateShowLogin} />
+                               <Switch>
+                                <Route path='/home' component={Dashboard} />
+                                <Route path='/question/:id' component={QuestionPage} />
+                                <Route path='/add' component={NewQuestion} />
+                                <Route path='/leaderboard' component={LeaderBoard} />
+                                <Route path='/results/:id' component={Results} />
+                                <Route component={Page404} />
+                            
+                                </Switch>
                             </div>
-                    )}
+                      )}
               </div>
             </BrowserRouter>
            
@@ -79,7 +83,7 @@ const Page404 = ({ location }) => (
  );
 
 
-function mapStateToProps({authedUser,questiosn,users},props){
+function mapStateToProps({authedUser,question,users},props){
      const map = new Map(Object.entries(users))
 
      let name =''

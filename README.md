@@ -1,3 +1,18 @@
+## Project description
+
+The would-you-rather app is a fun game whereby the users choose between two questions. The winner of the game is user who has created and answered the most questions. The users can see how they scored relative to other users. The users can select unanswered questions and view answered questions in the home page. They can view the competitors ranking in the leaderboard page and can create new polls.
+
+## npm install
+
+npm install -g create-react-app
+
+redux 
+redux-thunk
+react-redux
+react
+react-dom
+babel
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

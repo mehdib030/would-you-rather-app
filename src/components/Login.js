@@ -46,7 +46,12 @@ class Login extends Component {
         if(this.state.userSelected === ""){
             this.props.history.push("/")
         } else {
-            this.props.history.push("/home")
+
+            if(this.props.location.pathname==="/"){
+                this.props.history.push("/home")
+            } else {
+                this.props.history.push(this.props.location.pathname)
+            }
         }
         
         

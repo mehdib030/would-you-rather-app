@@ -23,7 +23,7 @@ class QuestionPage extends Component{
          <RadioButtons question={question} selectOption={this.selectOption} savedOption={savedOption}/>
            
             <Button variant="contained" color="primary" 
-            onClick={this.handleClick(question.id)}>
+            onClick={this.handleClick(question)}>
               Submit
             </Button>
         </div>
@@ -31,18 +31,18 @@ class QuestionPage extends Component{
     )
   }
 
-  handleClick = (id) => (e) =>{
+  handleClick = (question) => (e) =>{
     e.preventDefault()
 
     const {dispatch} = this.props
 
     dispatch(handleSaveAnswer({
-      id:id,
+      id:question.id,
       hasAnswered: this.props.question.hasAnswered,
       authedUser:this.props.authedUser,
       answer:this.state.selectedOption
     })).then(() => {
-      this.props.history.push("/results/"+id)
+      this.props.history.push("/results/"+question.id)
     })
     
   }
@@ -56,6 +56,12 @@ class QuestionPage extends Component{
   }
 
 }
+
+const Page404 = ({ location }) => (
+  <div>
+     <h2>No match found for <code>{location.pathname}</code></h2>
+  </div>
+);
 
 function mapStateToProps ({ authedUser, questions, users }, props) {
      var id  = props.match.params.id

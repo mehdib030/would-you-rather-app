@@ -6,32 +6,16 @@ import {Link,withRouter} from 'react-router-dom'
 
 class Question extends Component {
 
-   /*  handleSelectOption = (e) => {
-        e.preventDefault()
-
-        const {dispatch,question,authedUser} = this.props
-
-        dispatch(handleToggleAnswer({
-            id:question.id,
-            hasAnswered: question.hasAnswered,
-            authedUser
-        }))
-    }
- */
     toParent = (e,id) => {
         e.preventDefault()
     }
 
     render(){
-        const {question} = this.props
+        const {question,isAnswered} = this.props
 
         if(question === null){
             return <p>This Question does not exist</p>
         }
-
-       /*  const {
-            name,author,timestamp,optionOne,optionTwo
-        } = question */
 
         return (
 
@@ -55,7 +39,7 @@ class Question extends Component {
                     <div>
                             {/* <span>{name}</span> */}
                             
-                            <button type='button' className='' onClick={this.handleViewPoll(question.id)} >
+                            <button type='button' className='' onClick={this.handleViewPoll(question.id,isAnswered)} >
                                 View Poll
                             </button>
 
@@ -68,11 +52,14 @@ class Question extends Component {
         )
     }
 
-    handleViewPoll = (id) => (e) => {
+    handleViewPoll = (id,isAnswered) => (e) => {
         e.preventDefault()
     
-        
-       this.props.history.push("/question/"+id)
+       if(isAnswered){
+        this.props.history.push("/results/"+id)
+       } else {
+        this.props.history.push("/question/"+id)
+       }
     
     }
 }

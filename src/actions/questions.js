@@ -62,9 +62,10 @@ export function handleSaveAnswer({id,hasAnswered,authedUser,answer}){
         return saveAnswer({ 
             authedUser:authUser, 
             qid:id, 
-            answer:answer
+            answer:answer?answer:"optionOne"
         }).then(() => {
             hasAnswered = false
+            answer = answer?answer:"optionOne"
             dispatch(saveAnswerAction({id,authUser,hasAnswered,answer}))
             dispatch(saveUserAnswerAction({id,authUser,hasAnswered,answer}))
         })

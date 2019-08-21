@@ -21,7 +21,7 @@ export default function Nav(props){
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/leader' activeClassName='active'>
+                    <NavLink to='/leaderboard' activeClassName='active'>
                         Leader Board
                     </NavLink>
                 </li>

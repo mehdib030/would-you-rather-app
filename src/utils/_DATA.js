@@ -152,11 +152,7 @@ export function _saveQuestion (question) {
   return new Promise((res, rej) => {
     const authedUser = question.author;
     const formattedQuestion = formatQuestion(question);
-
-    console.log('***** DATAJS SAVING QUESTION : ',question.optionOneText)
-    console.log('***** DATAJS SAVING : ',formattedQuestion.optionOne)
-    console.log('***** DATAJS SAVING AUTHOR : ',formattedQuestion.author)
-
+    
     setTimeout(() => {
       questions = {
         ...questions,

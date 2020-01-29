@@ -19,8 +19,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-//const { question } = this.props
-
 export default function RadioButtonsGroup(props) {
   const classes = useStyles();
   

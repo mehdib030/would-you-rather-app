@@ -1,7 +1,6 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {formatQuestion,formatDate} from '../utils/helpers'
-//import {handleToggleAnswer} from '../actions/questions' 
+import {formatQuestion,formatDate} from '../utils/helpers' 
 import {Link,withRouter} from 'react-router-dom'
 
 class Question extends Component {
@@ -78,8 +77,6 @@ function mapStateToProps({authedUser,users,questions},{id}){
         authedUser,
         question:question
         
-        //questionPreformatted
-        //?formatQuestion(questionPreformatted):null
            
     }
 }

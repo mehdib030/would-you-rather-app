@@ -13,9 +13,6 @@ export default function questions (state = {},action){
                 ...state,
                 [action.id]: {
                     ...state[action.id],
-                    //[action.answer]:action.hasAnswered === true
-                    //?state[action.id].answers.filter((uid) => uid !== action.authedUser)
-                    //://state[action.id][action.answer].concat([action.authedUser])
                     [action.answer]: action.hasAnswered === true?
                     {
                         ...state[action.id][action.answer],

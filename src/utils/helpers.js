@@ -14,7 +14,6 @@ export function formatDate (timestamp) {
         timestamp,
         text,
         avatar:avatarUrl,
-        //votes:votes.length
     }
 }
 

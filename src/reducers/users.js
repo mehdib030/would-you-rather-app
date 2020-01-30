@@ -25,9 +25,6 @@ export default function users(state = {},action){
                 [action.authUser]:{
                     ...state[action.authUser],
                     answers:{[action.id]:action.answer}
-                    //answers:state[action.authUser].answers.concat({[action.id]:action.authUser})
-                   // ...state[action.authUser].answers
-                    //[action.id]: action.authUser
                 }
             }
         default:

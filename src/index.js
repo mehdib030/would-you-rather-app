@@ -6,10 +6,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
-//import { connectRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history' 
-
-//const history = createBrowserHistory()
 
 const store = createStore(reducer,middleware)
 

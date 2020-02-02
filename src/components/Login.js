@@ -76,5 +76,6 @@ function mapStateToProps(questions,users,authedUser){
             users:Object.values(users)
     }
 } 
-//export default connect(mapStateToProps)(Login)
+
+
 export default withRouter((Login))

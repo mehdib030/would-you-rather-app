@@ -69,11 +69,6 @@ export function handleSaveAnswer({id,hasAnswered,authedUser,answer}){
             dispatch(saveAnswerAction({id,authUser,hasAnswered,answer}))
             dispatch(saveUserAnswerAction({id,authUser,hasAnswered,answer}))
         })
-        /*  .catch((e)=>{
-            console.warn('Error in saveAnswer: ', e)
-            dispatch(saveAnswer(question.id,))
-            alert('There was an error selecting an answer.Try again.')
-            }) 
-        */
+    
     }
 }

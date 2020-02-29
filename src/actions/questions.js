@@ -25,7 +25,6 @@ export function handleAddQuestion(optionOne,optionTwo){
     return (dispatch,getState) => {
         const {authedUser} = getState()
 
-        //dispatch(showLoading())
         return saveQuestion({
             optionOneText:optionOne,
             optionTwoText: optionTwo,
@@ -34,7 +33,6 @@ export function handleAddQuestion(optionOne,optionTwo){
             dispatch(addQuestion(question))
             dispatch(addQuestionIdToUser(question.id,authedUser.authedUser))
         })
-        //.then(() => dispatch(hideLoading()))
     }
 }
 export function receiveQuestions(questions){

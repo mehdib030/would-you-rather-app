@@ -6,7 +6,7 @@ export const SAVE_ANSWER = 'SAVE_ANSWER'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const ADD_QUESTION_ID_TO_USER = 'ADD_QUESTION_ID_TO_USER'
 
-function addQuestion(question){
+export function addQuestion(question){
     return {
         type:ADD_QUESTION,
         question,

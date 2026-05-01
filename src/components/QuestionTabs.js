@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import Question from './Question'
 
 function TabPanel(props) {
@@ -38,13 +37,6 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
 export default function SimpleTabs(props) {
 
   const { unansweredQuestions,answeredQuestions} = props;
@@ -55,7 +47,6 @@ export default function SimpleTabs(props) {
     
   };
 
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -63,7 +54,7 @@ export default function SimpleTabs(props) {
   }
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper' }}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Unanswered Questions" {...a11yProps(0)} />
@@ -93,6 +84,6 @@ export default function SimpleTabs(props) {
          
       </TabPanel>
     
-    </div>
+    </Box>
   );
 }

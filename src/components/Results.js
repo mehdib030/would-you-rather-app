@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from '../utils/withRouter'
 
 
 class Results extends Component {
@@ -29,7 +30,7 @@ class Results extends Component {
 }
 
 function mapStateToProps({authedUser,questions,users},props){
-    const id  = props.match.params.id
+    const id  = props.params.id
 
     const question = questions[id]
 
@@ -53,4 +54,4 @@ function mapStateToProps({authedUser,questions,users},props){
       optionTwoTotal:optionTwoTotal
     }
 }
-export default connect(mapStateToProps)(Results) 
+export default withRouter(connect(mapStateToProps)(Results))

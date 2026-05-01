@@ -1,24 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2), 
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-}));
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export default function ControlledOpenSelect(props) {
-  const classes = useStyles();
   const [user, setUser] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
@@ -41,14 +27,9 @@ export default function ControlledOpenSelect(props) {
   return (
     <form autoComplete="off">
       
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel htmlFor="demo-controlled-open-select">User</InputLabel>
 
-        {/* <SelectField selectedIndex={this.state.deviceIndex}>
-            {this.state.devices.map(device =>
-            <MenuItem value={device.id} primaryText={device.name}/>
-            )}
-        </SelectField> */}
         <Select
           open={open}
           onClose={handleClose}
@@ -59,9 +40,8 @@ export default function ControlledOpenSelect(props) {
             name: 'user',
             id: 'demo-controlled-open-select',
           }}
-          
+          label="User"
         >
-        
 
           <MenuItem value="">
             <em>None</em>

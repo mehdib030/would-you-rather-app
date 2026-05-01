@@ -11,17 +11,17 @@ export default function Nav(props){
         <nav className='nav'>
             <ul>
                 <li>
-                    <NavLink to='/home' exact activeClassName='active'>
+                    <NavLink to='/home' className={({isActive}) => isActive ? 'active' : ''}>
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/add' activeClassName='active'>
+                    <NavLink to='/add' className={({isActive}) => isActive ? 'active' : ''}>
                         New Question
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/leaderboard' activeClassName='active'>
+                    <NavLink to='/leaderboard' className={({isActive}) => isActive ? 'active' : ''}>
                         Leader Board
                     </NavLink>
                 </li>
@@ -29,15 +29,11 @@ export default function Nav(props){
                     <div>Hello, {authedUserName}</div>
                 </li>    
                 <li>
-                    <NavLink to='/' activeClassName='active' onClick={() => updateShowLogin(true,'')}>
+                    <NavLink to='/' className={({isActive}) => isActive ? 'active' : ''} onClick={() => updateShowLogin(true,'')}>
                         Logout
                     </NavLink>
                 </li>
             </ul>
         </nav>
-
-
-
-
     )
 }

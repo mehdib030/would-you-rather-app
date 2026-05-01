@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button'
 import RadioButtons from './RadioButtons'
-import {Link,withRouter} from 'react-router-dom'
 import {handleSaveAnswer} from '../actions/questions'
+import {withRouter} from '../utils/withRouter'
 
 class QuestionPage extends Component{
 
@@ -42,7 +42,7 @@ class QuestionPage extends Component{
       authedUser:this.props.authedUser,
       answer:this.state.selectedOption
     })).then(() => {
-      this.props.history.push("/results/"+question.id)
+      this.props.navigate("/results/"+question.id)
     })
     
   }
@@ -57,14 +57,14 @@ class QuestionPage extends Component{
 
 }
 
-const Page404 = ({ location }) => (
+const Page404 = () => (
   <div>
-     <h2>No match found for <code>{location.pathname}</code></h2>
+     <h2>Page not found</h2>
   </div>
 );
 
 function mapStateToProps ({ authedUser, questions, users }, props) {
-     var id  = props.match.params.id
+     var id  = props.params.id
      
      let uid = authedUser.authedUser
 

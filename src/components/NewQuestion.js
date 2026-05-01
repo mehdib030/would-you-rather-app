@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-//import { constants } from 'zlib';
 import {connect} from 'react-redux'
 import {handleAddQuestion} from '../actions/questions'
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button'
+import {withRouter} from '../utils/withRouter'
 
 class NewQuestion extends Component {
 
@@ -32,7 +32,6 @@ class NewQuestion extends Component {
         var optionOneText = this.state.optionOneText
         var optionTwoText = this.state.optionTwoText
         const {dispatch,id} = this.props
-        // Add question to store
 
         dispatch(handleAddQuestion(optionOneText,optionTwoText))
 
@@ -41,7 +40,7 @@ class NewQuestion extends Component {
             optionTwoText:''
         }))
 
-        this.props.history.push("/home")
+        this.props.navigate("/home")
 
     }
 
@@ -49,9 +48,7 @@ class NewQuestion extends Component {
        const {optionOneText} = this.state.optionOneText
        const {optionTwoText} = this.state.optionTwoText
 
-       {/*todo: redirect to / if submitted */}
-
-        const questionsLeft = 100
+       const questionsLeft = 100
 
         return (
             <div>
@@ -73,6 +70,7 @@ class NewQuestion extends Component {
 
                     </div>
                 
+
                     
 
                     <Button variant="contained" color="primary" type='submit' 
@@ -91,4 +89,4 @@ class NewQuestion extends Component {
 
 }
 
-export default connect()(NewQuestion)
+export default withRouter(connect()(NewQuestion))

@@ -1,5 +1,5 @@
-import React, {Component,Fragment} from 'react'
-import {BrowserRouter,Route,Redirect,Switch} from 'react-router-dom'
+import React, {Component} from 'react'
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {handleInitialData} from './actions/shared'
 import Dashboard from './components/Dashboard'
@@ -27,29 +27,29 @@ class App extends Component {
             <BrowserRouter>
                  <div className="app" >
 
-                      {this.props.authedUserName===""?( //TODO: use redux-persist
-                          <Switch>
-                                 <Route exact path='/' render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)}/>
-                                <Route path='/home'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)}/>
-                                <Route path='/question/:id'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
-                                <Route path='/add'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
-                                <Route path='/leaderboard'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
-                                <Route path='/results/:id'  render={()=>(<Login updateShowLogin={this.updateShowLogin}/>)} />
-                                <Route component={Page404} />
-                          </Switch>
+                      {this.props.authedUserName===""?(
+                          <Routes>
+                                <Route exact path='/' element={<Login updateShowLogin={this.updateShowLogin}/>}/>
+                                <Route path='/home' element={<Login updateShowLogin={this.updateShowLogin}/>}/>
+                                <Route path='/question/:id' element={<Login updateShowLogin={this.updateShowLogin}/>} />
+                                <Route path='/add' element={<Login updateShowLogin={this.updateShowLogin}/>} />
+                                <Route path='/leaderboard' element={<Login updateShowLogin={this.updateShowLogin}/>} />
+                                <Route path='/results/:id' element={<Login updateShowLogin={this.updateShowLogin}/>} />
+                                <Route path='*' element={<Page404 />} />
+                          </Routes>
                            
                          ):( 
                             <div className='container'>
                             <Nav authedUserName={this.props.authedUserName} updateShowLogin={this.updateShowLogin} />
-                               <Switch>
-                                <Route path='/home' component={Dashboard} />
-                                <Route path='/question/:id' component={QuestionPage} />
-                                <Route path='/add' component={NewQuestion} />
-                                <Route path='/leaderboard' component={LeaderBoard} />
-                                <Route path='/results/:id' component={Results} />
-                                <Route component={Page404} />
+                               <Routes>
+                                <Route path='/home' element={<Dashboard />} />
+                                <Route path='/question/:id' element={<QuestionPage />} />
+                                <Route path='/add' element={<NewQuestion />} />
+                                <Route path='/leaderboard' element={<LeaderBoard />} />
+                                <Route path='/results/:id' element={<Results />} />
+                                <Route path='*' element={<Page404 />} />
                             
-                                </Switch>
+                                </Routes>
                             </div>
                       )}
               </div>
@@ -65,7 +65,6 @@ class App extends Component {
 
         if(selectedUser === "") {
             state =true
-           // this.props.history.push("/")
         } 
         this.setState({
             showLogin:state,
@@ -76,9 +75,9 @@ class App extends Component {
 
 }
 
-const Page404 = ({ location }) => (
+const Page404 = () => (
     <div>
-       <h2>No match found for <code>{location.pathname}</code></h2>
+       <h2>Page not found</h2>
     </div>
  );
 

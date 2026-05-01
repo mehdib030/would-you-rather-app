@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import SelectUser from './SelectUser'
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button'
 import {handleSetAuthedUser} from '../actions/authedUser'
-import {Link,withRouter} from 'react-router-dom'
+import {withRouter} from '../utils/withRouter'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
@@ -44,13 +44,13 @@ class Login extends Component {
     handleClick = (e) =>{
 
         if(this.state.userSelected === ""){
-            this.props.history.push("/")
+            this.props.navigate("/")
         } else {
 
             if(this.props.location.pathname==="/"){
-                this.props.history.push("/home")
+                this.props.navigate("/home")
             } else {
-                this.props.history.push(this.props.location.pathname)
+                this.props.navigate(this.props.location.pathname)
             }
         }
         
@@ -78,4 +78,4 @@ function mapStateToProps(questions,users,authedUser){
 } 
 
 
-export default withRouter((Login))
+export default withRouter(Login)

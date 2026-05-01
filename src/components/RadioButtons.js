@@ -1,27 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  formControl: {
-    margin: theme.spacing(3),
-  },
-  group: {
-    margin: theme.spacing(1, 0),
-  },
-}));
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 export default function RadioButtonsGroup(props) {
-  const classes = useStyles();
-  
 
   let question = props.question
 
@@ -37,14 +21,14 @@ export default function RadioButtonsGroup(props) {
   }
 
   return (
-    <div className={classes.root}>
+    <div style={{ display: 'flex' }}>
     
-      <FormControl component="fieldset" className={classes.formControl}>
+      <FormControl component="fieldset" sx={{ m: 3 }}>
         <FormLabel component="legend"></FormLabel>
         <RadioGroup
           aria-label="Question"
           name="question1"
-          className={classes.group}
+          sx={{ m: (theme) => theme.spacing(1, 0) }}
           value={value}
           onChange={handleChange}
         >

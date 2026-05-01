@@ -1,7 +1,7 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import {formatQuestion,formatDate} from '../utils/helpers' 
-import {Link,withRouter} from 'react-router-dom'
+import {withRouter} from '../utils/withRouter'
 
 class Question extends Component {
 
@@ -20,11 +20,6 @@ class Question extends Component {
 
             <div className='question'>
 
-            {/* <img src={avatar}
-                        alt={`Avatar of ${name}`}
-                        className='avatar'
-                />  */}
-
                 <div>AVATAR</div>
                 <div>{question.id}</div>
                 <div>{question.timestamp}</div>
@@ -36,7 +31,6 @@ class Question extends Component {
                 <div className='question-info'>
                 
                     <div>
-                            {/* <span>{name}</span> */}
                             
                             <button type='button' className='' onClick={this.handleViewPoll(question.id,isAnswered)} >
                                 View Poll
@@ -55,9 +49,9 @@ class Question extends Component {
         e.preventDefault()
     
        if(isAnswered){
-        this.props.history.push("/results/"+id)
+        this.props.navigate("/results/"+id)
        } else {
-        this.props.history.push("/question/"+id)
+        this.props.navigate("/question/"+id)
        }
     
     }

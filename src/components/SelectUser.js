@@ -3,13 +3,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import PropTypes from 'prop-types';
 
-export default function ControlledOpenSelect(props) {
+function ControlledOpenSelect(props) {
   const [user, setUser] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   let selectUser = props.selectUser
-  let users = props.users
 
   function handleChange(event) {
     setUser(event.target.value);
@@ -54,3 +54,10 @@ export default function ControlledOpenSelect(props) {
     </form>
   );
 }
+
+ControlledOpenSelect.propTypes = {
+  selectUser: PropTypes.func.isRequired,
+  users: PropTypes.array,
+};
+
+export default ControlledOpenSelect;

@@ -1,7 +1,8 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-export default function Nav(props){
+function Nav(props){
 
     let authedUserName = props.authedUserName
 
@@ -37,3 +38,10 @@ export default function Nav(props){
         </nav>
     )
 }
+
+Nav.propTypes = {
+    authedUserName: PropTypes.string.isRequired,
+    updateShowLogin: PropTypes.func.isRequired,
+}
+
+export default Nav

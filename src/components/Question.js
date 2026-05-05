@@ -1,13 +1,9 @@
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import {formatQuestion,formatDate} from '../utils/helpers' 
+import PropTypes from 'prop-types'
 import {withRouter} from '../utils/withRouter'
 
 class Question extends Component {
-
-    toParent = (e,id) => {
-        e.preventDefault()
-    }
 
     render(){
         const {question,isAnswered} = this.props
@@ -57,21 +53,18 @@ class Question extends Component {
     }
 }
 
-function mapStateToProps({authedUser,users,questions},{id}){
+Question.propTypes = {
+    question: PropTypes.object,
+    isAnswered: PropTypes.bool.isRequired,
+    navigate: PropTypes.func.isRequired,
+}
+
+function mapStateToProps({authedUser,questions},{id}){
     const question = questions[id] 
-    const parentQuestion = question ? questions[question.author]:null
-    let questionPreformatted = {
-        id:question.id,
-        optionOneText:question.optionOne.text,
-        optionTwoText:question.optionTwo.text,
-        author:question.author
-    }
 
     return {
         authedUser,
         question:question
-        
-           
     }
 }
 

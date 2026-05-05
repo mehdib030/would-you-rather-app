@@ -3,32 +3,9 @@ import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Question from './Question'
-
-function TabPanel(props) {
-  const { children, value, index,...other} = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      <Box p={3}>{children}</Box>
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
+import TabPanel from './TabPanel'
 
 function a11yProps(index) {
   return {
@@ -37,15 +14,9 @@ function a11yProps(index) {
   };
 }
 
-export default function SimpleTabs(props) {
+function SimpleTabs(props) {
 
   const { unansweredQuestions,answeredQuestions} = props;
-
-  SimpleTabs.propTypes = {
-    unansweredQuestions: PropTypes.any.isRequired,
-    answeredQuestions: PropTypes.any.isRequired,
-    
-  };
 
   const [value, setValue] = React.useState(0);
 
@@ -87,3 +58,10 @@ export default function SimpleTabs(props) {
     </Box>
   );
 }
+
+SimpleTabs.propTypes = {
+  unansweredQuestions: PropTypes.array.isRequired,
+  answeredQuestions: PropTypes.array.isRequired,
+};
+
+export default SimpleTabs;

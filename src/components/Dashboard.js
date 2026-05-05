@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Question from './Question'
+import PropTypes from 'prop-types'
 import QuestionTabs from './QuestionTabs'
 
 class Dashboard extends Component {
@@ -16,13 +16,18 @@ class Dashboard extends Component {
     }
 }
 
+Dashboard.propTypes = {
+    unansweredQuestions: PropTypes.array.isRequired,
+    answeredQuestions: PropTypes.array.isRequired,
+}
+
 function mapStateToProps({authedUser,questions,users}){
     let unansweredQuestions =[]
     let answeredQuestions =[]
 
     let quests = Object.values(questions)
 
-    quests.map((question) => {
+    quests.forEach((question) => {
          if(authedUser && (question.optionOne.votes.length > 0 || question.optionTwo.votes.length > 0 ) 
          && (question.optionOne.votes.find(userid => userid === authedUser.authedUser) 
              || question.optionTwo.votes.find(userid => userid === authedUser.authedUser))){

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {handleAddQuestion} from '../actions/questions'
 import Button from '@mui/material/Button'
 import {withRouter} from '../utils/withRouter'
@@ -31,7 +32,7 @@ class NewQuestion extends Component {
 
         var optionOneText = this.state.optionOneText
         var optionTwoText = this.state.optionTwoText
-        const {dispatch,id} = this.props
+        const {dispatch} = this.props
 
         dispatch(handleAddQuestion(optionOneText,optionTwoText))
 
@@ -45,10 +46,7 @@ class NewQuestion extends Component {
     }
 
    render() {
-       const {optionOneText} = this.state.optionOneText
-       const {optionTwoText} = this.state.optionTwoText
-
-       const questionsLeft = 100
+       const {optionOneText, optionTwoText} = this.state
 
         return (
             <div>
@@ -87,6 +85,11 @@ class NewQuestion extends Component {
 
    }
 
+}
+
+NewQuestion.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired,
 }
 
 export default withRouter(connect()(NewQuestion))

@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import LeaderBoardItem from './LeaderBoardItem'
 
 class LeaderBoard  extends Component {
     render(){
@@ -11,13 +13,7 @@ class LeaderBoard  extends Component {
 
                 <ul className='dash-list'>
                         {this.props.users.map((user) => (
-                            <li key={user.id}>
-                                <div>{user.id}</div>
-                                <div>{user.name}</div>
-                                <div>Answered Questions : {Object.keys(user.answers).length} </div>
-                                <div>Created Questions : {user.questions.length}</div>
-                                <div>Score : {user.questions.length + Object.keys(user.answers).length}</div>
-                            </li>
+                            <LeaderBoardItem key={user.id} user={user} />
                         ))}
                 </ul>
             </div>
@@ -25,8 +21,11 @@ class LeaderBoard  extends Component {
     }
 }
 
-function mapStateToProps({questions,users}){
+LeaderBoard.propTypes = {
+    users: PropTypes.array.isRequired,
+}
 
+function mapStateToProps({users}){
 
     return {
         

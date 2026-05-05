@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {withRouter} from '../utils/withRouter'
 
 
@@ -7,7 +8,7 @@ class Results extends Component {
 
     render(){
 
-        const {authedUser,question,total,optionOnePercentVote,optionTwoPercentVote,optionOneTotal,optionTwoTotal} = this.props
+        const {question,total,optionOnePercentVote,optionTwoPercentVote,optionOneTotal,optionTwoTotal} = this.props
 
        return (
             <div>
@@ -27,6 +28,15 @@ class Results extends Component {
             </div>
        )
     }
+}
+
+Results.propTypes = {
+    question: PropTypes.object.isRequired,
+    total: PropTypes.number.isRequired,
+    optionOnePercentVote: PropTypes.number.isRequired,
+    optionTwoPercentVote: PropTypes.number.isRequired,
+    optionOneTotal: PropTypes.number.isRequired,
+    optionTwoTotal: PropTypes.number.isRequired,
 }
 
 function mapStateToProps({authedUser,questions,users},props){

@@ -20,7 +20,6 @@ export function saveAnswer({authedUser,qid,answer}){
 }
 
 export function saveQuestion(question){
-    console.log('*** SAVING QUESTION')
     return _saveQuestion(question)
 }
 

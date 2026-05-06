@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import SelectUser from './SelectUser'
 import Button from '@mui/material/Button'
-import {handleSetAuthedUser} from '../actions/authedUser'
 import {withRouter} from '../utils/withRouter'
 import PropTypes from 'prop-types'
 
@@ -58,24 +56,11 @@ class Login extends Component {
       }
 
       selectUser = (userSelected) => {
-        console.log('SELECTED USER = ',userSelected)
-        
         this.setState({
             userSelected:userSelected,
         })
       }
 
-      getUsers = () =>{
-            
-      }
 }
-
-function mapStateToProps(questions,users,authedUser){
-
-    return {
-            users:Object.values(users)
-    }
-} 
-
 
 export default withRouter(Login)

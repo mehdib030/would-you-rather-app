@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {handleInitialData} from './actions/shared'
 import Dashboard from './components/Dashboard'
 import NewQuestion from './components/NewQuestion'
@@ -9,6 +10,7 @@ import LeaderBoard from './components/LeaderBoard'
 import Results from './components/Results'
 import Nav from './components/Nav'
 import Login from './components/Login'
+import Page404 from './components/Page404'
 import {handleSetAuthedUser} from './actions/authedUser'
 
 class App extends Component {
@@ -75,12 +77,10 @@ class App extends Component {
 
 }
 
-const Page404 = () => (
-    <div>
-       <h2>Page not found</h2>
-    </div>
- );
-
+App.propTypes = {
+    authedUserName: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
+}
 
 function mapStateToProps({authedUser,question,users},props){
      const map = new Map(Object.entries(users))

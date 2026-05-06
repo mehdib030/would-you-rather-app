@@ -4,8 +4,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import PropTypes from 'prop-types';
 
-export default function RadioButtonsGroup(props) {
+function RadioButtonsGroup(props) {
 
   let question = props.question
 
@@ -21,7 +22,7 @@ export default function RadioButtonsGroup(props) {
   }
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="radio-buttons-container">
     
       <FormControl component="fieldset" sx={{ m: 3 }}>
         <FormLabel component="legend"></FormLabel>
@@ -41,3 +42,18 @@ export default function RadioButtonsGroup(props) {
     </div>
   );
 }
+
+RadioButtonsGroup.propTypes = {
+  question: PropTypes.shape({
+    optionOne: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+    }).isRequired,
+    optionTwo: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  selectOption: PropTypes.func.isRequired,
+  savedOption: PropTypes.string,
+};
+
+export default RadioButtonsGroup;

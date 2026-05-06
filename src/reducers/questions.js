@@ -27,8 +27,6 @@ export default function questions (state = {},action){
                 }
             }
         case ADD_QUESTION:
-            const {question} = action
-            console.log('REDUCER: ADDING A QUESTION')
             return {
                 ...state,
                 [action.question.id]: action.question,

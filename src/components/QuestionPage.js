@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Button from '@mui/material/Button'
 import RadioButtons from './RadioButtons'
 import {handleSaveAnswer} from '../actions/questions'
@@ -48,8 +49,6 @@ class QuestionPage extends Component{
   }
 
   selectOption = (optionSelected) => {
-    console.log('SELECTED QUESTION OPTION = ',optionSelected,' QUESTION ID = ',this.props.question.id)
-    
     this.setState({
       selectedOption:optionSelected,
     })
@@ -57,11 +56,13 @@ class QuestionPage extends Component{
 
 }
 
-const Page404 = () => (
-  <div>
-     <h2>Page not found</h2>
-  </div>
-);
+QuestionPage.propTypes = {
+    authedUser: PropTypes.object.isRequired,
+    question: PropTypes.object.isRequired,
+    savedOption: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired,
+}
 
 function mapStateToProps ({ authedUser, questions, users }, props) {
      var id  = props.params.id
